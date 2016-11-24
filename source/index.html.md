@@ -76,80 +76,6 @@ Latlong API expects access_token to be included in all API requests to the serve
 `access_token=a70bf52c9d649675152485e2c9b15cf9b2fc3ebb54628944ebd52e293813fbdc`
 
 
-# Auto complete
-```ruby
-require 'rest-client'
-response = RestClient.get "http://api.latlong.in/v2/autocomplete.json", {
-        params: {:query => 'beng'}
-      }
-```
-
-```shell
-curl http://api.latlong.in/v2/autocomplete.json?query=beng
-```
-
-```javascript
-http://api.latlong.in/v2/autocomplete.json?query=beng
-```
-
-> The above API returns JSON structured like this:
-
-```json
-{
-  "data": [
-          {
-            "name": "Bengalur,Karnataka",
-            "geo": 510000021
-          },
-          {
-            "name": "Bengaluru Urban District,Karnataka",
-            "geo": 440000004
-          },
-          {
-            "name": "Bengaluru Rural District,Karnataka",
-            "geo": 480000015
-          },
-          {
-            "name": "Bengre,Mangaluru,Karnataka",
-            "geo": 890001390
-          },
-          {
-            "name": "Bengali Square,Indore,Indore",
-            "geo": 1860001967
-          },
-          {
-            "name": "Bengaluru Jalamandali,Gandhi Nagar:Central Bangalore:Central Bengaluru,Bengaluru Urban District,Karnataka",
-            "geo": 240036855
-          },
-          {
-            "name": "Bengalmattam,Ooty,Tamil Nadu",
-            "geo": 680005109
-          }
-        ]
-}
-```
-
-This endpoint returns matched location suggestion along with their unique identity number based on entered characters. API initially tries to match entered text within user's state. If it don't find any results then it will searches for match in India level. Results are populated based on their popularity. 
-
-
-### HTTP Request
-`GET http://api.latlong.in/v2/autocomplete.json`
-####  example
-`GET http://api.latlong.in/v2/autocomplete.json?query=beng`
-
-
-### Query Parameters
-
-Parameter | Type | Presence | Description
---------- | ---- | -------- | -----------
-query | string | must | name to be searched
-
-<aside class="notice">
-  you must add your <code>access_token</code> with all API request
-</aside>
-<aside class="success">
-200 — suggestion and related info successfully retrieved.
-</aside>
 
 
 
@@ -306,3 +232,77 @@ lon | integer/float | must | longitude of location
 200 — Store search and related info successfully retrieved.
 </aside>
 
+# Auto complete
+```ruby
+require 'rest-client'
+response = RestClient.get "http://api.latlong.in/v2/autocomplete.json", {
+        params: {:query => 'beng'}
+      }
+```
+
+```shell
+curl http://api.latlong.in/v2/autocomplete.json?query=beng
+```
+
+```javascript
+http://api.latlong.in/v2/autocomplete.json?query=beng
+```
+
+> The above API returns JSON structured like this:
+
+```json
+{
+  "data": [
+          {
+            "name": "Bengalur,Karnataka",
+            "geo": 510000021
+          },
+          {
+            "name": "Bengaluru Urban District,Karnataka",
+            "geo": 440000004
+          },
+          {
+            "name": "Bengaluru Rural District,Karnataka",
+            "geo": 480000015
+          },
+          {
+            "name": "Bengre,Mangaluru,Karnataka",
+            "geo": 890001390
+          },
+          {
+            "name": "Bengali Square,Indore,Indore",
+            "geo": 1860001967
+          },
+          {
+            "name": "Bengaluru Jalamandali,Gandhi Nagar:Central Bangalore:Central Bengaluru,Bengaluru Urban District,Karnataka",
+            "geo": 240036855
+          },
+          {
+            "name": "Bengalmattam,Ooty,Tamil Nadu",
+            "geo": 680005109
+          }
+        ]
+}
+```
+
+This endpoint returns matched location suggestion along with their unique identity number based on entered characters. API initially tries to match entered text within user's state. If it don't find any results then it will searches for match in India level. Results are populated based on their popularity. 
+
+
+### HTTP Request
+`GET http://api.latlong.in/v2/autocomplete.json`
+####  example
+`GET http://api.latlong.in/v2/autocomplete.json?query=beng`
+
+
+### Query Parameters
+
+Parameter | Type | Presence | Description
+--------- | ---- | -------- | -----------
+query | string | must | name to be searched
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+<aside class="success">
+200 — suggestion and related info successfully retrieved.
+</aside>
