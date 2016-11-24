@@ -166,11 +166,14 @@ curl http://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING&am
 <p>Make sure to replace <code class="prettyprint">CLIENT ID</code>,<code class="prettyprint">SECRET ID</code>,<code class="prettyprint">ACCESS_TOKEN</code> with proper values provided for you.</p>
 </blockquote>
 
-<p>Users need to have <code class="prettyprint">access_token</code> to access all latlong API. You can register for a new access_token key at our <a href="http://latlong.in/contact/">contact page</a>.</p>
+<p>Users need to have <code class="prettyprint">access_token</code> to access all latlong API. How to get your <code class="prettyprint">access_token</code>?</p>
 
-<p>Customers who want to use latlong&rsquo;s API need to register with <a href="http://latlong.in/contact/">contact page</a>. These user will get their unique <code class="prettyprint">client_id</code> and <code class="prettyprint">secret_id</code> to generate their own <code class="prettyprint">access_token</code>s.</p>
+<ul>
+<li>If you are signed up with latlong we would have provided you your <code class="prettyprint">secret</code> keys to generate <code class="prettyprint">access_token</code>s.</li>
+<li>In case you are not yet signed up, you can register for <code class="prettyprint">secret</code> keys at our <a href="http://latlong.in/contact/">contact page</a>.</li>
+</ul>
 
-<p>By making a <code class="prettyprint">POST</code> request call to latlong API user can get their <code class="prettyprint">access_token</code> which is valid for one hour of duration.</p>
+<p>By making a <code class="prettyprint">POST</code> request call to latlong API using provided <code class="prettyprint">CLIENT_ID</code> and <code class="prettyprint">SECRET_ID</code> user can get their <code class="prettyprint">access_token</code> which is valid for one hour of duration.</p>
 
 <p>Latlong API expects access_token to be included in all API requests to the server in the url that looks like the following:</p>
 
