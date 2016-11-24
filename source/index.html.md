@@ -1,14 +1,14 @@
 ---
-title: API Reference
+title: Latlong API Reference
 
 language_tabs:
-  - shell
   - ruby
-  - python
   - javascript
+  - shell
+  - java
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='http://latlong.in/contact/'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -19,171 +19,290 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Latlong API documentation. User can use our API endpoints, which can get information on various locatioon based services like reverse geocode, locality based driving directions, locality based auto-complete and geocode/geosearch.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Latlong also has APIs to serve its customer with endpoints for searching stores within given location and searching for their stores around a given geo point, etc.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+We have language bindings in Shell, Ruby, javascript, java and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+
 
 # Authentication
 
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
+# With ruby, use `rest-client` for simpler access
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+# Request for access_token using client's credentials
+require 'rest-client'
+response = RestClient.post 'http://api.latlong.in/oauth/token', {
+        grant_type: 'client_credentials',
+        client_id: CLIENT ID,
+        client_secret: SECRET ID
+      }
+token = JSON.parse(response)["access_token"]
+
 ```
-
+<!-- 
 ```python
 import kittn
 
 api = kittn.authorize('meowmeowmeow')
-```
+``` -->
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+# clients request for accessing thier own access_token
+curl http://api.latlong.in/oauth/token
+  --data "grant_type=client_credentials&client_id=CLIENT ID&client_secret=SECRET ID"
+
+# authenticating using access_token given for using general api
+curl http://api.latlong.in/v2/search.json?query=STRING&access_token=ACCESS_TOKEN
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
+#JAVA SCRIPT code goes here
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `CLIENT ID`,`SECRET ID`,`ACCESS_TOKEN` with proper values provided for you.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Users need to have `access_token` to access all latlong API. You can register for a new access_token key at our [contact page](http://latlong.in/contact/).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Customers who want to use latlong's API need to register with [contact page](http://latlong.in/contact/). These user will get their unique `client_id` and `secret_id` to generate their own `access_token`s.
 
-`Authorization: meowmeowmeow`
+By making a `POST` request call to latlong API user can get their `access_token` which is valid for one hour of duration.
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+Latlong API expects access_token to be included in all API requests to the server in the url that looks like the following:
 
-# Kittens
+`access_token=a70bf52c9d649675152485e2c9b15cf9b2fc3ebb54628944ebd52e293813fbdc`
 
-## Get All Kittens
 
+# Auto complete
 ```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+require 'rest-client'
+response = RestClient.get "http://api.latlong.in/v2/autocomplete.json", {
+        params: {:query => 'beng'}
+      }
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl http://api.latlong.in/v2/autocomplete.json?query=beng
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+http://api.latlong.in/v2/autocomplete.json?query=beng
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> The above API returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "data": [
+          {
+            "name": "Bengalur,Karnataka",
+            "geo": 510000021
+          },
+          {
+            "name": "Bengaluru Urban District,Karnataka",
+            "geo": 440000004
+          },
+          {
+            "name": "Bengaluru Rural District,Karnataka",
+            "geo": 480000015
+          },
+          {
+            "name": "Bengre,Mangaluru,Karnataka",
+            "geo": 890001390
+          },
+          {
+            "name": "Bengali Square,Indore,Indore",
+            "geo": 1860001967
+          },
+          {
+            "name": "Bengaluru Jalamandali,Gandhi Nagar:Central Bangalore:Central Bengaluru,Bengaluru Urban District,Karnataka",
+            "geo": 240036855
+          },
+          {
+            "name": "Bengalmattam,Ooty,Tamil Nadu",
+            "geo": 680005109
+          }
+        ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint returns matched location suggestion along with their unique identity number based on entered characters. API initially tries to match entered text within user's state. If it don't find any results then it will searches for match in India level. Results are populated based on their popularity. 
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
+`GET http://api.latlong.in/v2/autocomplete.json`
+####  example
+`GET http://api.latlong.in/v2/autocomplete.json?query=beng`
 
-`GET http://example.com/kittens/<ID>`
 
-### URL Parameters
+### Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Type | Presence | Description
+--------- | ---- | -------- | -----------
+query | string | must | name to be searched
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+<aside class="success">
+200 — suggestion and related info successfully retrieved.
+</aside>
+
+
+
+# Search
+
+## Store search within location
+
+```ruby
+require 'rest-client'
+response = RestClient.get "http://api.latlong.in/v2/brands/[brand_id]/newsearch.json", {
+        params: {:query => 'bengaluru'}
+      }
+```
+
+```shell
+curl http://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru
+```
+
+```javascript
+http://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru
+```
+
+> The above API returns JSON structured like this:
+
+```json
+{
+  "lr": {
+        "name": "Bengaluru",
+        "type": 4,
+        "id": 510000021,
+        "geoproperty": "POLYGON ((77.4333697482847 12.9408367512911, 77.4497203721123 12.9162692658496, 
+              .,
+              .,
+              77.4450402753991 12.9831397444511, 77.4333697482847 12.9408367512911))",
+        "anchor_point": "POINT (77.570708 12.977246)"
+      },
+  "count": 1,
+  "stores": [
+            {
+              "id": 1,
+              "wp_name": "ONZE Technologies (Latlong) - Banashankari 2nd Stage, Bangalore",
+              "category_id": 270,
+              "distance": 0,
+              "is_routeable": true,
+              "way_point": {
+                  "id": 240090126,
+                  "phone_no": "+918026712175",
+                  "email_id": null,
+                  "address": "​#1757/A, 1st Floor, 34th Cross, Banashankari 2nd Stage, Bangalore - 5600701",
+                  "geofeature": {
+                      "geoproperty": "POINT (77.5663626194 12.9186399138545)"
+                      }
+                  },
+              "store_timings": "Monday - Friday, 9 AM - 6 PM"
+            }
+          ]
+}
+```
+
+This endpoint returns stores within entered location along with geo property of the entered location and count of stores found within entered location.
+
+
+### HTTP Request
+`GET http://api.latlong.in/v2/brands/[brand_id]/newsearch.json`
+####  example
+`GET http://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru`
+
+### Using latlong's unique location id for faster search
+API works faster with latlong's unique geofeature id returned from autocomplete API for interested location name.
+####  example
+`GET http://api.latlong.in/v2/brands/[brand_id]/newsearch.json?geofeature=510000021`
+
+### Query Parameters
+
+Parameter | Type | Presence | Description
+--------- | ---- | -------- | -----------
+brand_id | integer | must | registered brand id from latlong
+query | string | must | location name where stores to be searched
+category | integer | optional | category id of registered brand
+geofeature | integer | optional | latlong's unique id for location
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
+
+## Store search around geo point
+
+```ruby
+require 'rest-client'
+response = RestClient.get "http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json", {
+        params: {:lat => 12.976182 ,:lon => 77.570901}
+      }
+```
+
+```shell
+curl http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901
+```
+
+```javascript
+http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901
+```
+
+> The above API returns JSON structured like this:
+
+```json
+{
+  "count": 1,
+  "stores": [
+            {
+              "id": 1,
+              "wp_name": "ONZE Technologies (Latlong) - Banashankari 2nd Stage, Bangalore",
+              "category_id": 270,
+              "distance": 6.42,
+              "is_routeable": true,
+              "way_point": {
+                  "id": 240090126,
+                  "phone_no": "+918026712175",
+                  "email_id": null,
+                  "address": "​#1757/A, 1st Floor, 34th Cross, Banashankari 2nd Stage, Bangalore - 5600701",
+                  "geofeature": {
+                      "geoproperty": "POINT (77.5663626194 12.9186399138545)"
+                      }
+                  },
+              "store_timings": "Monday - Friday, 9 AM - 6 PM"
+            }
+          ]
+}
+```
+
+This endpoint returns 10 stores around given geo point (lattitude and longitude). Store list is sorted based on distance from given location to the given point.
+
+
+### HTTP Request
+`GET http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json`
+####  example
+`GET http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901`
+
+### Query Parameters
+
+Parameter | Type | Presence | Description
+--------- | ---- | -------- | -----------
+brand_id | integer | must | registered brand id from latlong
+lat | integer/float | must | lattitude of location
+lon | integer/float | must | longitude of location
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
 
