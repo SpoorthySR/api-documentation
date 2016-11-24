@@ -65,11 +65,12 @@ curl http://api.latlong.in/v2/search.json?query=STRING&access_token=ACCESS_TOKEN
 
 > Make sure to replace `CLIENT ID`,`SECRET ID`,`ACCESS_TOKEN` with proper values provided for you.
 
-Users need to have `access_token` to access all latlong API. You can register for a new access_token key at our [contact page](http://latlong.in/contact/).
+Users need to have `access_token` to access all latlong API. How to get your `access_token`?
 
-Customers who want to use latlong's API need to register with [contact page](http://latlong.in/contact/). These user will get their unique `client_id` and `secret_id` to generate their own `access_token`s.
+* If you are signed up with latlong we would have provided you your `secret` keys to generate `access_token`s.
+* In case you are not yet signed up, you can register for `secret` keys at our [contact page](http://latlong.in/contact/).
 
-By making a `POST` request call to latlong API user can get their `access_token` which is valid for one hour of duration.
+By making a `POST` request call to latlong API using provided `CLIENT_ID` and `SECRET_ID` user can get their `access_token` which is valid for one hour of duration.
 
 Latlong API expects access_token to be included in all API requests to the server in the url that looks like the following:
 
