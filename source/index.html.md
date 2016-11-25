@@ -8,7 +8,7 @@ language_tabs:
   - java
 
 toc_footers:
-  - <a href='http://latlong.in/contact/'>Sign Up for a Developer Key</a>
+  - <a href='https://latlong.in/contact/'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -35,7 +35,7 @@ We have language bindings in Shell, Ruby, javascript, java and Python! You can v
 
 # Request for access_token using client's credentials
 require 'rest-client'
-response = RestClient.post 'http://api.latlong.in/oauth/token', {
+response = RestClient.post 'https://api.latlong.in/oauth/token', {
         grant_type: 'client_credentials',
         client_id: CLIENT ID,
         client_secret: SECRET ID
@@ -52,11 +52,11 @@ api = kittn.authorize('meowmeowmeow')
 
 ```shell
 # clients request for accessing thier own access_token
-curl http://api.latlong.in/oauth/token
+curl https://api.latlong.in/oauth/token
   --data "grant_type=client_credentials&client_id=CLIENT ID&client_secret=SECRET ID"
 
 # authenticating using access_token given for using general api
-curl http://api.latlong.in/v2/search.json?query=STRING&access_token=ACCESS_TOKEN
+curl https://api.latlong.in/v2/search.json?query=STRING&access_token=ACCESS_TOKEN
 ```
 
 ```javascript
@@ -86,17 +86,17 @@ Latlong API expects access_token to be included in all API requests to the serve
 
 ```ruby
 require 'rest-client'
-response = RestClient.get "http://api.latlong.in/v2/brands/[brand_id]/newsearch.json", {
+response = RestClient.get "https://api.latlong.in/v2/brands/[brand_id]/newsearch.json", {
         params: {:query => 'bengaluru'}
       }
 ```
 
 ```shell
-curl http://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru
+curl https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru
 ```
 
 ```javascript
-http://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru
+https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru
 ```
 
 > The above API returns JSON structured like this:
@@ -140,14 +140,14 @@ This endpoint returns stores within entered location along with geo property of 
 
 
 ### HTTP Request
-`GET http://api.latlong.in/v2/brands/[brand_id]/newsearch.json`
+`GET https://api.latlong.in/v2/brands/[brand_id]/newsearch.json`
 ####  example
-`GET http://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru`
+`GET https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru`
 
 ### Using latlong's unique location id for faster search
 API works faster with latlong's unique geofeature id returned from autocomplete API for interested location name.
 ####  example
-`GET http://api.latlong.in/v2/brands/[brand_id]/newsearch.json?geofeature=510000021`
+`GET https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?geofeature=510000021`
 
 ### Query Parameters
 
@@ -169,17 +169,17 @@ geofeature | integer | optional | latlong's unique id for location
 
 ```ruby
 require 'rest-client'
-response = RestClient.get "http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json", {
+response = RestClient.get "https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json", {
         params: {:lat => 12.976182 ,:lon => 77.570901}
       }
 ```
 
 ```shell
-curl http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901
+curl https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901
 ```
 
 ```javascript
-http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901
+https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901
 ```
 
 > The above API returns JSON structured like this:
@@ -213,9 +213,9 @@ This endpoint returns 10 stores around given geo point (lattitude and longitude)
 
 
 ### HTTP Request
-`GET http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json`
+`GET https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json`
 ####  example
-`GET http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901`
+`GET https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901`
 
 ### Query Parameters
 
@@ -236,17 +236,17 @@ lon | integer/float | must | longitude of location
 # Auto complete
 ```ruby
 require 'rest-client'
-response = RestClient.get "http://api.latlong.in/v2/autocomplete.json", {
+response = RestClient.get "https://api.latlong.in/v2/autocomplete.json", {
         params: {:query => 'beng'}
       }
 ```
 
 ```shell
-curl http://api.latlong.in/v2/autocomplete.json?query=beng
+curl https://api.latlong.in/v2/autocomplete.json?query=beng
 ```
 
 ```javascript
-http://api.latlong.in/v2/autocomplete.json?query=beng
+https://api.latlong.in/v2/autocomplete.json?query=beng
 ```
 
 > The above API returns JSON structured like this:
@@ -290,9 +290,9 @@ This endpoint returns matched location suggestion along with their unique identi
 
 
 ### HTTP Request
-`GET http://api.latlong.in/v2/autocomplete.json`
+`GET https://api.latlong.in/v2/autocomplete.json`
 ####  example
-`GET http://api.latlong.in/v2/autocomplete.json?query=beng`
+`GET https://api.latlong.in/v2/autocomplete.json?query=beng`
 
 
 ### Query Parameters
