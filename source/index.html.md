@@ -56,11 +56,22 @@ curl https://api.latlong.in/oauth/token
   --data "grant_type=client_credentials&client_id=CLIENT ID&client_secret=SECRET ID"
 
 # authenticating using access_token given for using general api
-curl https://api.latlong.in/v2/search.json?query=STRING&access_token=ACCESS_TOKEN
+curl https://api.latlong.in/v2/search.json?query=STRING -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ```javascript
 #JAVA SCRIPT code goes here
+```
+```java
+// Java code goes here
+
+// Use any of the http client library for fetching rest service data
+okhttp   //(http://square.github.io/okhttp/)
+retrofit //(http://square.github.io/retrofit/)
+
+// Or Use Standard java libraries like 
+JAX-RS   //(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)
+jersey   //(https://jersey.java.net/documentation/latest/client.html)
 ```
 
 > Make sure to replace `CLIENT ID`,`SECRET ID`,`ACCESS_TOKEN` with proper values provided for you.
@@ -92,11 +103,23 @@ response = RestClient.get "https://api.latlong.in/v2/brands/[brand_id]/newsearch
 ```
 
 ```shell
-curl https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru
+curl https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ```javascript
 https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru
+```
+
+```java
+// Java code goes here
+
+// Use any of the http client library for fetching rest service data
+okhttp   //(http://square.github.io/okhttp/)
+retrofit //(http://square.github.io/retrofit/)
+
+// Or Use Standard java libraries like 
+JAX-RS   //(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)
+jersey   //(https://jersey.java.net/documentation/latest/client.html)
 ```
 
 > The above API returns JSON structured like this:
@@ -175,11 +198,23 @@ response = RestClient.get "https://api.latlong.in/v2/brands/[brand_id]/stores_ar
 ```
 
 ```shell
-curl https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901
+curl https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901 -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ```javascript
 https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&lon=77.570901
+```
+
+```java
+// Java code goes here
+
+// Use any of the http client library for fetching rest service data
+okhttp   //(http://square.github.io/okhttp/)
+retrofit //(http://square.github.io/retrofit/)
+
+// Or Use Standard java libraries like 
+JAX-RS   //(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)
+jersey   //(https://jersey.java.net/documentation/latest/client.html)
 ```
 
 > The above API returns JSON structured like this:
@@ -242,11 +277,23 @@ response = RestClient.get "https://api.latlong.in/v2/autocomplete.json", {
 ```
 
 ```shell
-curl https://api.latlong.in/v2/autocomplete.json?query=beng
+curl https://api.latlong.in/v2/autocomplete.json?query=beng -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ```javascript
 https://api.latlong.in/v2/autocomplete.json?query=beng
+```
+
+```java
+// Java code goes here
+
+// Use any of the http client library for fetching rest service data
+okhttp   //(http://square.github.io/okhttp/)
+retrofit //(http://square.github.io/retrofit/)
+
+// Or Use Standard java libraries like 
+JAX-RS   //(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)
+jersey   //(https://jersey.java.net/documentation/latest/client.html)
 ```
 
 > The above API returns JSON structured like this:
