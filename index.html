@@ -113,7 +113,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='http://latlong.in/contact/'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://latlong.in/contact/'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -137,7 +137,7 @@
 
 <span class="c1"># Request for access_token using client's credentials</span>
 <span class="nb">require</span> <span class="s1">'rest-client'</span>
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'http://api.latlong.in/oauth/token'</span><span class="p">,</span> <span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.latlong.in/oauth/token'</span><span class="p">,</span> <span class="p">{</span>
         <span class="ss">grant_type: </span><span class="s1">'client_credentials'</span><span class="p">,</span>
         <span class="ss">client_id: </span><span class="no">CLIENT</span> <span class="no">ID</span><span class="p">,</span>
         <span class="ss">client_secret: </span><span class="no">SECRET</span> <span class="no">ID</span>
@@ -153,11 +153,11 @@ import kittn
 api = kittn.authorize('meowmeowmeow')
 ``` -->
 <pre class="highlight shell"><code><span class="c"># clients request for accessing thier own access_token</span>
-curl http://api.latlong.in/oauth/token
+curl https://api.latlong.in/oauth/token
   --data <span class="s2">"grant_type=client_credentials&amp;client_id=CLIENT ID&amp;client_secret=SECRET ID"</span>
 
 <span class="c"># authenticating using access_token given for using general api</span>
-curl http://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING&amp;access_token<span class="o">=</span>ACCESS_TOKEN
+curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING&amp;access_token<span class="o">=</span>ACCESS_TOKEN
 </code></pre>
 <pre class="highlight javascript"><code><span class="err">#</span><span class="nx">JAVA</span> <span class="nx">SCRIPT</span> <span class="nx">code</span> <span class="nx">goes</span> <span class="nx">here</span>
 </code></pre>
@@ -183,13 +183,13 @@ curl http://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING&am
 
 <h2 id="store-search-within-location">Store search within location</h2>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://api.latlong.in/v2/brands/[brand_id]/newsearch.json"</span><span class="p">,</span> <span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/newsearch.json"</span><span class="p">,</span> <span class="p">{</span>
         <span class="ss">params: </span><span class="p">{</span><span class="ss">:query</span> <span class="o">=&gt;</span> <span class="s1">'bengaluru'</span><span class="p">}</span>
       <span class="p">}</span>
 </code></pre>
-<pre class="highlight shell"><code>curl http://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query<span class="o">=</span>bengaluru
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query<span class="o">=</span>bengaluru
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">http</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru</span>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru</span>
 </code></pre>
 
 <blockquote>
@@ -233,11 +233,11 @@ curl http://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING&am
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://api.latlong.in/v2/brands/[brand_id]/newsearch.json</code></p>
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/newsearch.json</code></p>
 
 <h4 id="example">example</h4>
 
-<p><code class="prettyprint">GET http://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru</code></p>
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru</code></p>
 
 <h3 id="using-latlong-39-s-unique-location-id-for-faster-search">Using latlong&rsquo;s unique location id for faster search</h3>
 
@@ -245,7 +245,7 @@ curl http://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING&am
 
 <h4 id="example">example</h4>
 
-<p><code class="prettyprint">GET http://api.latlong.in/v2/brands/[brand_id]/newsearch.json?geofeature=510000021</code></p>
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?geofeature=510000021</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -293,13 +293,13 @@ curl http://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING&am
 
 <h2 id="store-search-around-geo-point">Store search around geo point</h2>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json"</span><span class="p">,</span> <span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json"</span><span class="p">,</span> <span class="p">{</span>
         <span class="ss">params: </span><span class="p">{</span><span class="ss">:lat</span> <span class="o">=&gt;</span> <span class="mi">12</span><span class="o">.</span><span class="mi">976182</span> <span class="p">,</span><span class="ss">:lon</span> <span class="o">=&gt;</span> <span class="mi">77</span><span class="o">.</span><span class="mi">570901</span><span class="p">}</span>
       <span class="p">}</span>
 </code></pre>
-<pre class="highlight shell"><code>curl http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat<span class="o">=</span>12.976182&amp;lon<span class="o">=</span>77.570901
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat<span class="o">=</span>12.976182&amp;lon<span class="o">=</span>77.570901
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">http</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&amp;lon=77.570901</span>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&amp;lon=77.570901</span>
 </code></pre>
 
 <blockquote>
@@ -333,11 +333,11 @@ curl http://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING&am
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json</code></p>
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json</code></p>
 
 <h4 id="example">example</h4>
 
-<p><code class="prettyprint">GET http://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&amp;lon=77.570901</code></p>
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&amp;lon=77.570901</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -379,13 +379,13 @@ curl http://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING&am
 
 <h1 id="auto-complete">Auto complete</h1>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://api.latlong.in/v2/autocomplete.json"</span><span class="p">,</span> <span class="p">{</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/autocomplete.json"</span><span class="p">,</span> <span class="p">{</span>
         <span class="ss">params: </span><span class="p">{</span><span class="ss">:query</span> <span class="o">=&gt;</span> <span class="s1">'beng'</span><span class="p">}</span>
       <span class="p">}</span>
 </code></pre>
-<pre class="highlight shell"><code>curl http://api.latlong.in/v2/autocomplete.json?query<span class="o">=</span>beng
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/autocomplete.json?query<span class="o">=</span>beng
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">http</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/autocomplete.json?query=beng</span>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/autocomplete.json?query=beng</span>
 </code></pre>
 
 <blockquote>
@@ -429,11 +429,11 @@ curl http://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING&am
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://api.latlong.in/v2/autocomplete.json</code></p>
+<p><code class="prettyprint">GET https://api.latlong.in/v2/autocomplete.json</code></p>
 
 <h4 id="example">example</h4>
 
-<p><code class="prettyprint">GET http://api.latlong.in/v2/autocomplete.json?query=beng</code></p>
+<p><code class="prettyprint">GET https://api.latlong.in/v2/autocomplete.json?query=beng</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
