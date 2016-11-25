@@ -2,7 +2,7 @@
 
 
 
-The Latlong API uses the following error codes:
+Latlong API gives below specified error codes depending on the criteria:
 
 
 Error Code | Meaning
