@@ -60,7 +60,16 @@ curl https://api.latlong.in/v2/search.json?query=STRING -H 'Authorization: Beare
 ```
 
 ```javascript
-#JAVA SCRIPT code goes here
+
+        $.post("https://api.latlong.in/oauth/token",
+        {
+          grant_type: "client_credentials",
+          client_id: '<CLIENT_ID>',
+          client_secret: "<CLIENT_SECRET>"
+        },
+        function(data,status){
+            console.log("Token: " + data.access_token + "\nStatus: " + status);
+        });
 ```
 ```java
 // Java code goes here
