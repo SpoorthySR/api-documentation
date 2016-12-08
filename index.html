@@ -159,7 +159,16 @@ curl https://api.latlong.in/oauth/token
 <span class="c"># authenticating using access_token given for using general api</span>
 curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="err">#</span><span class="nx">JAVA</span> <span class="nx">SCRIPT</span> <span class="nx">code</span> <span class="nx">goes</span> <span class="nx">here</span>
+<pre class="highlight javascript"><code>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"https://api.latlong.in/oauth/token"</span><span class="p">,</span>
+        <span class="p">{</span>
+          <span class="na">grant_type</span><span class="p">:</span> <span class="s2">"client_credentials"</span><span class="p">,</span>
+          <span class="na">client_id</span><span class="p">:</span> <span class="s1">'&lt;CLIENT_ID&gt;'</span><span class="p">,</span>
+          <span class="na">client_secret</span><span class="p">:</span> <span class="s2">"&lt;CLIENT_SECRET&gt;"</span>
+        <span class="p">},</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="nx">status</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Token: "</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">access_token</span> <span class="o">+</span> <span class="s2">"\nStatus: "</span> <span class="o">+</span> <span class="nx">status</span><span class="p">);</span>
+        <span class="p">});</span>
 </code></pre>
 <pre class="highlight java"><code><span class="c1">// Java code goes here</span>
 
