@@ -363,3 +363,90 @@ query | string | must | name to be searched
 <aside class="success">
 200 — suggestion and related info successfully retrieved.
 </aside>
+
+# Store places
+```ruby
+require 'rest-client'
+response = RestClient.get "https://api.latlong.in/v2/brands/[brand_id]/places.json"
+```
+
+```shell
+curl https://api.latlong.in/v2/brands/[brand_id]/places.json -H 'Authorization: Bearer <ACCESS_TOKEN>'
+```
+
+```javascript
+https://api.latlong.in/v2/brands/[brand_id]/places.json
+```
+
+```java
+// Java code goes here
+
+// Use any of the http client library for fetching rest service data
+okhttp   //(http://square.github.io/okhttp/)
+retrofit //(http://square.github.io/retrofit/)
+
+// Or Use Standard java libraries like 
+JAX-RS   //(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)
+jersey   //(https://jersey.java.net/documentation/latest/client.html)
+```
+
+> The above API returns JSON structured like this:
+
+```json
+{
+  "data": [
+          {
+      		"state": "Andhra Pradesh",
+      		"cities": [
+       					 "Guntur",
+        				 "Tirupati Taluk",
+        				 "Vijayawada Taluk",
+       					 "Vishakhapatnam"
+      					]
+   		 },
+    	{
+      		"state": "Assam",
+      		"cities": [
+        				"Guwahati"
+     				 	]
+    	},
+    	{
+      		"state": "Bihar",
+      		"cities": [
+        				"Gaya",
+        				"Muzaffarpur",
+        				"Patna"
+      					]
+    	},
+    	{
+      		"state": "Chhattisgarh",
+      		"cities": [
+        				"Bhilai",
+        				"Bilaspur",
+        				"Durg",
+        				"Jagdalpur",
+        				"Korba",
+        				"Raigarh",
+        				"Raipur"
+    					]
+    	}
+    	]
+}
+```
+
+This endpoint returns alphabetically ordered list of States including Cities which are all contains brand's stores in it.
+
+
+### HTTP Request
+`GET https://api.latlong.in/v2/brands/[brand_id]/places.json`
+####  example
+`GET https://api.latlong.in/v2/brands/1234/places.json`
+
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+<aside class="success">
+200 — suggestion and related info successfully retrieved.
+</aside>
+	
