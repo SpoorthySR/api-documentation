@@ -510,6 +510,88 @@ curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING -
 200 — suggestion and related info successfully retrieved.
 </aside>
 
+<h1 id="store-places">Store places</h1>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/places.json"</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/places.json -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/places.json</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andhra Pradesh"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                         </span><span class="s2">"Guntur"</span><span class="p">,</span><span class="w">
+                         </span><span class="s2">"Tirupati Taluk"</span><span class="p">,</span><span class="w">
+                         </span><span class="s2">"Vijayawada Taluk"</span><span class="p">,</span><span class="w">
+                         </span><span class="s2">"Vishakhapatnam"</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Assam"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"Guwahati"</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bihar"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"Gaya"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"Muzaffarpur"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"Patna"</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chhattisgarh"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"Bhilai"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"Bilaspur"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"Durg"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"Jagdalpur"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"Korba"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"Raigarh"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"Raipur"</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns alphabetically ordered list of States including Cities which are all contains brand&rsquo;s stores in it.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/places.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/1234/places.json</code></p>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — suggestion and related info successfully retrieved.
+</aside>
+    
+
           <h1 id="errors">Errors</h1>
 
 <p>Latlong API gives below specified error codes depending on the criteria:</p>
