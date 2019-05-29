@@ -198,17 +198,15 @@ curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING -
 
 <p><code class="prettyprint">access_token=a70bf52c9d649675152485e2c9b15cf9b2fc3ebb54628944ebd52e293813fbdc</code></p>
 
-<h1 id="search">Search</h1>
-
-<h2 id="store-search-within-location">Store search within location</h2>
+<h1 id="reverse-geocode">Reverse Geocode</h1>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/newsearch.json"</span><span class="p">,</span> <span class="p">{</span>
-        <span class="ss">params: </span><span class="p">{</span><span class="ss">:query</span> <span class="o">=&gt;</span> <span class="s1">'bengaluru'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/reverse_geocode.json"</span><span class="p">,</span> <span class="p">{</span>
+        <span class="ss">params: </span><span class="p">{</span><span class="ss">:latitude</span> <span class="o">=&gt;</span> <span class="s1">'12.9306361'</span><span class="p">,</span> <span class="ss">:longitude</span> <span class="o">=&gt;</span> <span class="s1">'77.5783206'</span><span class="p">}</span>
       <span class="p">}</span>
 </code></pre>
-<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query<span class="o">=</span>bengaluru -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/reverse_geocode.json?latitude<span class="o">=</span>12.9306361&amp;longitude<span class="o">=</span>77.5783206 -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru</span>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/reverse_geocode.json?latitude=12.9306361&amp;longitude=77.5783206</span>
 </code></pre>
 <pre class="highlight java"><code><span class="c1">// Java code goes here</span>
 
@@ -225,56 +223,49 @@ curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING -
 <p>The above API returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"lr"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bengaluru"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">510000021</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POLYGON ((77.4333697482847 12.9408367512911, 77.4497203721123 12.9162692658496, 
-              .,
-              .,
-              77.4450402753991 12.9831397444511, 77.4333697482847 12.9408367512911))"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"anchor_point"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.570708 12.977246)"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"poi"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nt">"road"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"wp_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ONZE Technologies (Latlong) - Banashankari 2nd Stage, Bangalore"</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"is_routeable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"way_point"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">240090126</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"phone_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+918026712175"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"email_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"​#1757/A, 1st Floor, 34th Cross, Banashankari 2nd Stage, Bangalore - 5600701"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"geofeature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                      </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.5663626194 12.9186399138545)"</span><span class="w">
-                      </span><span class="p">}</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-              </span><span class="nt">"store_timings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday - Friday, 9 AM - 6 PM"</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">750000108</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sub-Location"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7th block"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">670000017</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Locality"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jayanagar"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">510000021</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bengaluru"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">420000001</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"State"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karnataka"</span><span class="w">
             </span><span class="p">}</span><span class="w">
-          </span><span class="p">]</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"more"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint returns stores within entered location along with geo property of the entered location and count of stores found within entered location.</p>
+<p>This endpoint returns the reverse geocoded address along with their unique identity number and area order for the given geo point. </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/newsearch.json</code></p>
+<p><code class="prettyprint">GET https://api.latlong.in/v2/reverse_geocode.json</code></p>
 
 <h4 id="example">example</h4>
 
-<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?query=bengaluru</code></p>
-
-<h3 id="using-latlong-39-s-unique-location-id-for-faster-search">Using latlong&rsquo;s unique location id for faster search</h3>
-
-<p>API works faster with latlong&rsquo;s unique geofeature id returned from autocomplete API for interested location name.</p>
-
-<h4 id="example">example</h4>
-
-<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/newsearch.json?geofeature=510000021</code></p>
+<p><code class="prettyprint">GET https://api.latlong.in/v2/reverse_geocode.json?latitude=12.9306361&amp;longitude=77.5783206</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -287,28 +278,16 @@ curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING -
 </tr>
 </thead><tbody>
 <tr>
-<td>brand_id</td>
-<td>integer</td>
+<td>latitude</td>
+<td>integer/float</td>
 <td>must</td>
-<td>registered brand id from latlong</td>
+<td>Latitude of the location</td>
 </tr>
 <tr>
-<td>query</td>
-<td>string</td>
+<td>longitude</td>
+<td>integer/float</td>
 <td>must</td>
-<td>location name where stores to be searched</td>
-</tr>
-<tr>
-<td>category</td>
-<td>integer</td>
-<td>optional</td>
-<td>category id of registered brand</td>
-</tr>
-<tr>
-<td>geofeature</td>
-<td>integer</td>
-<td>optional</td>
-<td>latlong&rsquo;s unique id for location</td>
+<td>Longitude of the location</td>
 </tr>
 </tbody></table>
 
@@ -317,103 +296,7 @@ curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING -
 </aside>
 
 <aside class="success">
-200 — Store search and related info successfully retrieved.
-</aside>
-
-<h2 id="store-search-around-geo-point">Store search around geo point</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json"</span><span class="p">,</span> <span class="p">{</span>
-        <span class="ss">params: </span><span class="p">{</span><span class="ss">:lat</span> <span class="o">=&gt;</span> <span class="mi">12</span><span class="o">.</span><span class="mi">976182</span> <span class="p">,</span><span class="ss">:lon</span> <span class="o">=&gt;</span> <span class="mi">77</span><span class="o">.</span><span class="mi">570901</span><span class="p">}</span>
-      <span class="p">}</span>
-</code></pre>
-<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat<span class="o">=</span>12.976182&amp;lon<span class="o">=</span>77.570901 -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&amp;lon=77.570901</span>
-</code></pre>
-<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
-
-<span class="c1">// Use any of the http client library for fetching rest service data</span>
-<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
-<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
-
-<span class="c1">// Or Use Standard java libraries like </span>
-<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
-<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
-</code></pre>
-
-<blockquote>
-<p>The above API returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"wp_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ONZE Technologies (Latlong) - Banashankari 2nd Stage, Bangalore"</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.42</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"is_routeable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"way_point"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">240090126</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"phone_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+918026712175"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"email_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"​#1757/A, 1st Floor, 34th Cross, Banashankari 2nd Stage, Bangalore - 5600701"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"geofeature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                      </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.5663626194 12.9186399138545)"</span><span class="w">
-                      </span><span class="p">}</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-              </span><span class="nt">"store_timings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday - Friday, 9 AM - 6 PM"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint returns 10 stores around given geo point (lattitude and longitude). Store list is sorted based on distance from given location to the given point.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json</code></p>
-
-<h4 id="example">example</h4>
-
-<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/stores_around_me.json?lat=12.976182&amp;lon=77.570901</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Presence</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>brand_id</td>
-<td>integer</td>
-<td>must</td>
-<td>registered brand id from latlong</td>
-</tr>
-<tr>
-<td>lat</td>
-<td>integer/float</td>
-<td>must</td>
-<td>lattitude of location</td>
-</tr>
-<tr>
-<td>lon</td>
-<td>integer/float</td>
-<td>must</td>
-<td>longitude of location</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">
-  you must add your <code>access_token</code> with all API request
-</aside>
-
-<aside class="success">
-200 — Store search and related info successfully retrieved.
+200 — suggestion and related info successfully retrieved.
 </aside>
 
 <h1 id="auto-complete">Auto complete</h1>
@@ -510,7 +393,479 @@ curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING -
 200 — suggestion and related info successfully retrieved.
 </aside>
 
-<h1 id="store-places">Store places</h1>
+<h1 id="search">Search</h1>
+
+<h2 id="store-search-within-location">Store search within location</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/find.json"</span><span class="p">,</span> <span class="p">{</span>
+        <span class="ss">params: </span><span class="p">{</span><span class="ss">:query</span> <span class="o">=&gt;</span> <span class="s1">'bengaluru'</span><span class="p">}</span>
+      <span class="p">}</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/find.json?query<span class="o">=</span>bengaluru -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/find.json?query=bengaluru</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"lr"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bengaluru"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">510000021</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POLYGON ((77.4333697482847 12.9408367512911, 77.4497203721123 12.9162692658496, 
+              .,
+              .,
+              77.4450402753991 12.9831397444511, 77.4333697482847 12.9408367512911))"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"anchor_point"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.570708 12.977246)"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"search_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"within"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"wp_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ONZE Technologies (Latlong) - 7th Block Jayanagar, Bangalore"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"is_routeable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"wp_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">240090126</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"phone_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+918026712175"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"email_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"​#l/B-48, Jaylakshmi Arcade, 27th Cross Road, 7th Block, Jayanagar, Bengaluru - 560070"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bengaluru"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karnataka"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"store_timings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday - Friday, 9 AM - 6 PM"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"geofeature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.5663626194 12.9186399138545)"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns stores within entered location along with geo property of the entered location and count of stores found within entered location.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/find.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/find.json?query=bengaluru</code></p>
+
+<h3 id="using-latlong-39-s-unique-location-id-for-faster-search">Using latlong&rsquo;s unique location id for faster search</h3>
+
+<p>API works faster with latlong&rsquo;s unique geofeature id returned from autocomplete API for interested location name.</p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/find.json?geofeature=510000021</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>brand_id</td>
+<td>integer</td>
+<td>must</td>
+<td>registered brand id from latlong</td>
+</tr>
+<tr>
+<td>query</td>
+<td>string</td>
+<td>must</td>
+<td>location name where stores to be searched</td>
+</tr>
+<tr>
+<td>category</td>
+<td>integer</td>
+<td>optional</td>
+<td>category id of registered brand</td>
+</tr>
+<tr>
+<td>geofeature</td>
+<td>integer</td>
+<td>optional</td>
+<td>latlong&rsquo;s unique id for location</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>integer</td>
+<td>optional</td>
+<td>metadata id</td>
+</tr>
+<tr>
+<td>shuffle</td>
+<td>boolean</td>
+<td>optional</td>
+<td>whether to shuffle the response list or not</td>
+</tr>
+<tr>
+<td>sure_search</td>
+<td>boolean</td>
+<td>optional</td>
+<td>true - calls the around me method if no stores present inside the polygon, false - gives the empty array</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
+
+<h2 id="store-search-around-geo-point">Store search around geo point</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/stores_around.json"</span><span class="p">,</span> <span class="p">{</span>
+        <span class="ss">params: </span><span class="p">{</span><span class="ss">:lat</span> <span class="o">=&gt;</span> <span class="mi">12</span><span class="o">.</span><span class="mi">976182</span> <span class="p">,</span><span class="ss">:long</span> <span class="o">=&gt;</span> <span class="mi">77</span><span class="o">.</span><span class="mi">570901</span><span class="p">}</span>
+      <span class="p">}</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/stores_around.json?lat<span class="o">=</span>12.976182&amp;long<span class="o">=</span>77.570901 -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/stores_around.json?lat=12.976182&amp;long=77.570901</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"wp_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ONZE Technologies (Latlong) - 7th Block Jayanagar, Bangalore"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"is_routeable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"wp_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">240090126</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"phone_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+918026712175"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"email_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"​#l/B-48, Jaylakshmi Arcade, 27th Cross Road, 7th Block, Jayanagar, Bengaluru - 560070"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bengaluru"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karnataka"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"store_timings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday - Friday, 9 AM - 6 PM"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"geofeature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.5663626194 12.9186399138545)"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns 10 stores around given geo point (lattitude and longitude). Store list is sorted based on distance from given location to the given point.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/stores_around.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/stores_around.json?lat=12.976182&amp;long=77.570901</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>brand_id</td>
+<td>integer</td>
+<td>must</td>
+<td>registered brand id from latlong</td>
+</tr>
+<tr>
+<td>category_id</td>
+<td>integer</td>
+<td>optional</td>
+<td>category id of registered brand</td>
+</tr>
+<tr>
+<td>lat</td>
+<td>integer/float</td>
+<td>must</td>
+<td>lattitude of location</td>
+</tr>
+<tr>
+<td>long</td>
+<td>integer/float</td>
+<td>must</td>
+<td>longitude of location</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>integer</td>
+<td>optional</td>
+<td>metadata id</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
+
+<h1 id="location-specifier">Location Specifier</h1>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/get_ls.json"</span><span class="p">,</span> <span class="p">{</span>
+        <span class="ss">params: </span><span class="p">{</span><span class="ss">:id</span> <span class="o">=&gt;</span> <span class="s1">'240090126'</span><span class="p">}</span>
+      <span class="p">}</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/get_ls.json?query<span class="o">=</span>240090126 -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/get_ls.json?query=240090126</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"ls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"27th Cross Road\nNEAR Nanda Talkies Road-Ganesha Temple Signal\nNEXT TO Dream Zone Furnishings\n7th block,Jayanagar,Bengaluru"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns the landmark based address for the given latlong&rsquo;s unique id for location points. </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/get_ls.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/get_ls.json?id=240090126</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>must</td>
+<td>latlong&rsquo;s unique id for location</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — suggestion and related info successfully retrieved.
+</aside>
+
+<h1 id="stores">Stores</h1>
+
+<h2 id="store-details">Store details</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/stores/[store_id].json"</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/stores/[store_id].json? -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/stores/[store_id].json?</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"wp_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ONZE Technologies (Latlong) - 7th Block Jayanagar, Bangalore"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_routeable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"way_point"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">240090126</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"phone_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+918026712175"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#l/B-48, Jaylakshmi Arcade, 27th Cross Road, 7th Block, Jayanagar, Bengaluru - 560070"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"geofeature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.5783206 12.9306361)"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"store_timings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday - Friday, 9 AM - 6 PM"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns all store  count along with state level store counts.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/stores/[store_id].json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/24/stores/1.json?</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>brand_id</td>
+<td>integer</td>
+<td>must</td>
+<td>registered brand id from latlong</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>integer</td>
+<td>must</td>
+<td>store id of registered brand</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
+
+<h2 id="store-metadata">Store Metadata</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/stores/[store_id]/metadata.json"</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/stores/[store_id]/metadata.json? -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/stores/[store_id]/metadata.json?</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"store_timings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday - Friday, 9 AM - 6 PM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"store_images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"metadatas"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns all store&rsquo;s metadata information for the given store id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/stores/[store_id]/metadata.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/24/stores/1/metadata.json?</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>brand_id</td>
+<td>integer</td>
+<td>must</td>
+<td>registered brand id from latlong</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>integer</td>
+<td>must</td>
+<td>store id of registered brand</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
+
+<h2 id="store-places">Store places</h2>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/places.json"</span>
 </code></pre>
@@ -548,26 +903,6 @@ curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING -
             </span><span class="nt">"cities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                         </span><span class="s2">"Guwahati"</span><span class="w">
                         </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bihar"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"cities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                        </span><span class="s2">"Gaya"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"Muzaffarpur"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"Patna"</span><span class="w">
-                        </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chhattisgarh"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"cities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                        </span><span class="s2">"Bhilai"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"Bilaspur"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"Durg"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"Jagdalpur"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"Korba"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"Raigarh"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"Raipur"</span><span class="w">
-                        </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -590,7 +925,599 @@ curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING -
 <aside class="success">
 200 — suggestion and related info successfully retrieved.
 </aside>
-    
+
+<h2 id="all-stores">All Stores</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/stores.json"</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/stores.json -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/stores.json</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"wp_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ONZE Technologies (Latlong) - 7th Block Jayanagar, Bangalore"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_routeable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"way_point"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">240090126</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"phone_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+918026712175"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#l/B-48, Jaylakshmi Arcade, 27th Cross Road, 7th Block, Jayanagar, Bengaluru - 560070"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"geofeature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.5783206 12.9306361)"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"store_timings"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns all the stores for customer along with its details and geo property.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/stores.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/24/stores.json</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>brand_id</td>
+<td>integer</td>
+<td>must</td>
+<td>registered brand id from latlong</td>
+</tr>
+<tr>
+<td>category_id</td>
+<td>integer</td>
+<td>optional</td>
+<td>category id of registered brand</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
+
+<h2 id="store-count-state-level">Store Count - State level</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/counts.json"</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/counts.json? -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/counts.json?</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"total_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"state_count"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karnataka"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns all stores count along with state level store counts.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/counts.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/counts.json?category_id=12</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>brand_id</td>
+<td>integer</td>
+<td>must</td>
+<td>registered brand id from latlong</td>
+</tr>
+<tr>
+<td>category_id</td>
+<td>integer</td>
+<td>optional</td>
+<td>category id of registered brand</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
+
+<h1 id="direction">Direction</h1>
+
+<h2 id="search-landmarks">Search Landmarks</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/search_landmarks.json"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="ss">params: </span><span class="p">{</span><span class="ss">:lat</span> <span class="o">=&gt;</span> <span class="mi">12</span><span class="o">.</span><span class="mi">9306361</span><span class="p">,</span> <span class="ss">:lon</span> <span class="o">=&gt;</span> <span class="mi">77</span><span class="o">.</span><span class="mi">5783206</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/search_landmarks.json?lat<span class="o">=</span>12.9306361&amp;lon<span class="o">=</span>77.5783206 -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/search_landmarks.json?lat=12.9306361&amp;lon=77.5783206</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jayanagar Shopping Complex;Jayanagar 4th Block Shopping Complex;Jayanagar BDA Shopping Complex"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">240031566</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"geofeature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.5839042663574 12.9287518923715)"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jaynagar 3rd Block ICICI Bank Circle;3rd Block ICICI Bank Signal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000181</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"geofeature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.58393438562915 12.93292469256794)"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nettakallappa Circle"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000158</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"geofeature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.57336945509768 12.9402066771197)"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sangam Circle"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000006</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"geofeature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"geoproperty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT (77.57776858850612 12.91743624395743)"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns the 4 popular landmarks around the given point with its geo property .</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">https://api.latlong.in/v2/search_landmarks.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/search_landmarks.json?lat=12.9306361&amp;lon=77.5783206</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lat</td>
+<td>integer/float</td>
+<td>must</td>
+<td>Latitude of the location</td>
+</tr>
+<tr>
+<td>lon</td>
+<td>integer/float</td>
+<td>must</td>
+<td>Longitude of the location</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
+
+<h2 id="get-direction">Get Direction</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/directions.json"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="ss">params: </span><span class="p">{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">:from</span> <span class="o">=&gt;</span> <span class="mi">240031566</span><span class="p">,</span> <span class="ss">:to</span> <span class="o">=&gt;</span> <span class="mi">240090126</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/directions.json?type<span class="o">=</span>1&amp;from<span class="o">=</span>240031566&amp;to<span class="o">=</span>240090126 -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/directions.json?type=1&amp;from=240031566&amp;to=240090126</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"from_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jayanagar Shopping Complex"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"to_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Latlong - Onze Technologies (I) Pvt Ltd."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.828</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"from_point"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.9287518923715</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"long"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.5839042663574</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"to_point"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.9306361</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"long"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.5783206</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"hint_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hints"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"START-Jayangr Shopping Cmplx ON RIGHT\n"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"GO ON 9th Main Road TOWARDS Jaynagar 3rd Block ICICI Bank Circle,GO 0.2K\n"</span><span class="p">,</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"points"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.9287518923715</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"long"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.58383</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns driving direction coordinates and hints from given source to destination .</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/directions.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/directions.json?type=1&amp;from=240031566&amp;to=240090126</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>integer</td>
+<td>must</td>
+<td>Type of source and destination given</td>
+</tr>
+<tr>
+<td>from</td>
+<td>integer/float/text</td>
+<td>must</td>
+<td>Source location</td>
+</tr>
+<tr>
+<td>to</td>
+<td>integer/float/text</td>
+<td>must</td>
+<td>destination location</td>
+</tr>
+</tbody></table>
+
+<p>Type values : </p>
+
+<p>1 - Direction from geoid to geoid <br/>
+2 - Direction from place to place<br/>
+3 - Direction from geo point to geo point<br/>
+4 - Direction from geo point to geo id<br/>
+5 - Direction from geo id to geo point<br/>
+6 - Direction from geo point to place<br/>
+7 - Direction from place to geo point<br/>
+8 - Direction from geo id to place<br/>
+9 - Direction from place to geo id<br/></p>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
+
+<h2 id="pgroute">PgRoute</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/route.json"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="ss">params: </span><span class="p">{</span><span class="ss">:source</span> <span class="o">=&gt;</span> <span class="mi">670000042</span><span class="p">,</span> <span class="ss">:target</span> <span class="o">=&gt;</span> <span class="mi">670000039</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/route.json?source<span class="o">=</span>670000042&amp;target<span class="o">=</span>670000039 -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/route.json?source=670000042&amp;target=670000039</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"route"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">6818</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"LINESTRING(77.5383936945382 12.9730498638944,77.5382105723534 12.9728945444162,77.5378891920946 12.9725533100707)"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"LINESTRING(77.5383936945382 12.9730498638944,77.5386210531133 12.972976822418)"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"LINESTRING(77.5386210531133 12.972976822418,77.5387239786652 12.9728577044917)"</span><span class="p">,</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns the driving direction with distance from start to end point.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/route.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/route.json?source=670000042&amp;target=670000039</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>source</td>
+<td>integer</td>
+<td>must</td>
+<td>latlong&rsquo;s unique id for source location</td>
+</tr>
+<tr>
+<td>target</td>
+<td>integer</td>
+<td>must</td>
+<td>latlong&rsquo;s unique id for destination location</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
+
+<h1 id="sms">SMS</h1>
+
+<h2 id="send-otp">Send OTP</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/otp.json"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="ss">params: </span><span class="p">{</span><span class="ss">:mobile_number</span> <span class="o">=&gt;</span> <span class="mi">1234567890</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/otp.json?mobile_number<span class="o">=</span>1234567890 -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/otp.json?mobile_number=1234567890</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OTP sent"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint sends the otp to the user mobile number .</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">https://api.latlong.in/v2/otp.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/otp.json?mobile_number=1234567890</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobile_number</td>
+<td>integer</td>
+<td>must</td>
+<td>Users mobile number</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
+
+<h2 id="send-sms-response">Send SMS response</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://api.latlong.in/v2/brands/[brand_id]/stores/[store_id]/send_sms.json"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="ss">params: </span><span class="p">{</span><span class="ss">:mobile_number</span> <span class="o">=&gt;</span> <span class="mi">1234567890</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.latlong.in/v2/brands/[brand_id]/stores/[store_id]/send_sms.json?mobile_number<span class="o">=</span>1234567890 -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//api.latlong.in/v2/brands/[brand_id]/stores/[store_id]/send_sms.json?mobile_number=1234567890</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"Message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Message sent successfully"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint sends the store details as a message to user mobile number.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/stores/[store_id]/send_sms.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://api.latlong.in/v2/brands/[brand_id]/stores/[store_id]/send_sms.json?mobile_number=1234567890</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>brand_id</td>
+<td>integer</td>
+<td>must</td>
+<td>registered brand id from latlong</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>integer</td>
+<td>must</td>
+<td>store id of registered brand</td>
+</tr>
+<tr>
+<td>mobile_number</td>
+<td>integer</td>
+<td>must</td>
+<td>User&rsquo;s mobile number</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Store search and related info successfully retrieved.
+</aside>
 
           <h1 id="errors">Errors</h1>
 
@@ -608,7 +1535,7 @@ curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING -
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your access_token is wrong</td>
+<td>Unauthorized &ndash; Your access_token is wrong or expired</td>
 </tr>
 <tr>
 <td>403</td>
