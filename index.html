@@ -1714,6 +1714,205 @@ curl https://api.latlong.in/v2/search.json?query<span class="o">=</span>STRING -
 200 — Geo verification info successfully retrieved.
 </aside>
 
+<h2 id="Geovalidationplus">Geovalidationplus</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://geoapi.latlong.in/v2/geovalidationplus.json"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="ss">params: </span><span class="p">{</span><span class="ss">:latitude</span> <span class="o">=&gt;</span> <span class="mi">12.9306361, </span><span class="ss">:longitude</span> <span class="o">=&gt;</span> <span class="mi">77.5783206, </span><span class="ss">:address</span> <span class="o">=&gt;</span> <span class="mi">1st main road, rr nagar, 560098, </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight shell"><code>curl  https://geoapi.latlong.in/v2/geovalidationplus.json?address=1st main road, rr nagar, 560098&latitude=12.9306361&longitude=77.5783206 -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//geoapi.latlong.in/v2/geovalidationplus.json?address=1st main road, rr nagar, 560098&latitude=12.9306361&longitude=77.5783206</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"Output"</span><span class="p">: {
+        <span class="nt">"geocode"</span><span class="p">: {
+            <span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">12.918409626411</span><span class="p">,</span>
+            <span class="nt">"long"</span><span class="p">:</span><span class="w"> </span><span class="s2">77.5239171300371</span><span class="p">,</span>
+            <span class="nt">"pincode_lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">12.914286477539</span><span class="w"><span class="p">,</span>
+            <span class="nt">"pincode_long"</span><span class="p">:</span><span class="w"> </span><span class="s2">77.5159053022223</span><span class="p">,</span>
+            <span class="nt">"accuracy_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span>
+            <span class="nt">"remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"random"</span><span class="w">
+        </span><span class="p">}</span><span class="w"><span class="p">,</span>
+        <span class="nt">"reverse_geocode"</span><span class="p">: {
+            <span class="nt">"data"</span><span class="p">: {
+                <span class="nt">"poi"</span><span class="p">: {},</span>
+                <span class="nt">"road"</span><span class="p">: {},</span><span class="w"></span>
+                    </span><span class="nt">"locality"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">750000108</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sub-Location"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7th block"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">670000017</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Locality"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jayanagar"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">510000021</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bengaluru"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">420000001</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"State"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karnataka"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                <span class="nt">"pincode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"560070"</span><span class="p">,</span>
+                <span class="nt">"more"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+            </span><span class="p">}</span><span class="w"></span>
+        </span><span class="p">}</span><span class="w"><span class="p">,</span>
+        <span class="nt">"geo_distance"</span><span class="p">: {
+            <span class="nt">"aerial-distance"</span><span class="p">:</span><span class="w"> </span><span class="s2">6.06</span><span class="p">,</span>
+            <span class="nt">"driving-distance"</span><span class="p">:</span><span class="w"> </span><span class="s2">7.76</span><span class="p">,</span>
+        </span><span class="p">}</span><span class="w"><span class="p">,</span>
+        <span class="nt">"geo_verification"</span><span class="p">: {
+            <span class="nt">"pincode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pincode_didn't match"</span><span class="p">,</span>
+            <span class="nt">"first_two_digits_pincode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"first two digits of pincode match"</span><span class="p">,</span>
+            <span class="nt">"polygon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"polygon didn't match"</span><span class="w"><span class="p">,</span>
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns geocode of the given address, reverse geocode of the given latitude-longitude, geo verification of given address and latitude-longitude and geo distance between geocoded address with given latitude-longitude .</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://geoapi.latlong.in/v2/geovalidationplus.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://geoapi.latlong.in/v2/geovalidationplus.json?address=1st main road, rr nagar, 560098&latitude=12.9306361&longitude=77.5783206</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>text</td>
+<td>must</td>
+<td>Address</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>integer/float</td>
+<td>must</td>
+<td>Area latitude</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>integer/float</td>
+<td>must</td>
+<td>Area longitude</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Geo validation info successfully retrieved.
+</aside>
+
+<h1 id="geo-code">Geocode</h1>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"https://geoapi.latlong.in/v2/geocode.json"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="ss">params: </span><span class="p">{</span><span class="ss">:address</span> <span class="o">=&gt;</span> <span class="mi">1st main road, rr nagar, 560098</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight shell"><code>curl  https://geoapi.latlong.in/v2/geocode.json?address=1st main road, rr nagar, 560098 -H <span class="s1">'Authorization: Bearer &lt;ACCESS_TOKEN&gt;'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">https</span><span class="err">:</span><span class="c1">//geoapi.latlong.in/v2/geocode.json?address=1st main road, rr nagar, 560098</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// Java code goes here</span>
+
+<span class="c1">// Use any of the http client library for fetching rest service data</span>
+<span class="n">okhttp</span>   <span class="c1">//(http://square.github.io/okhttp/)</span>
+<span class="n">retrofit</span> <span class="c1">//(http://square.github.io/retrofit/)</span>
+
+<span class="c1">// Or Use Standard java libraries like </span>
+<span class="n">JAX</span><span class="o">-</span><span class="n">RS</span>   <span class="c1">//(http://docs.jboss.org/resteasy/docs/3.0.16.Final/userguide/html/RESTEasy_Client_Framework.html)</span>
+<span class="n">jersey</span>   <span class="c1">//(https://jersey.java.net/documentation/latest/client.html)</span>
+</code></pre>
+
+<blockquote>
+<p>The above API returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">12.918409626411</span><span class="p">,</span>
+    <span class="nt">"long"</span><span class="p">:</span><span class="w"> </span><span class="s2">77.5239171300371</span><span class="p">,</span>
+    <span class="nt">"pincode_lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">12.914286477539</span><span class="p">,</span>
+    <span class="nt">"pincode_long"</span><span class="p">:</span><span class="w"> </span><span class="s2">77.5159053022223</span><span class="w"><span class="p">,</span>
+    <span class="nt">"accuracy_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span>
+    <span class="nt">"remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"random"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint verifies the given latlong point with the address parameters .</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://geoapi.latlong.in/v2/geocode.json</code></p>
+
+<h4 id="example">example</h4>
+
+<p><code class="prettyprint">GET https://geoapi.latlong.in/v2/geocode.json?address=1st main road, rr nagar, 560098</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Presence</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>text</td>
+<td>must</td>
+<td>Area Address</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  you must add your <code>access_token</code> with all API request
+</aside>
+
+<aside class="success">
+200 — Geo verification info successfully retrieved.
+</aside>
+
           <h1 id="errors">Errors</h1>
 
 <p>Latlong API gives below specified error codes depending on the criteria:</p>
